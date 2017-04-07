@@ -1,0 +1,295 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/emberfeather/less.js-middleware#readme">less-middleware (v2.2.0)</a>
+</h1>
+<h4>LESS.js middleware for connect.</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.less-middleware">module less-middleware</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">less-middleware.</span>utilities</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.less-middleware.utilities">module less-middleware.utilities</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.less-middleware.utilities.isCompressedPath">
+            function <span class="apidocSignatureSpan">less-middleware.utilities.</span>isCompressedPath
+            <span class="apidocSignatureSpan">(pathname)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.less-middleware.utilities.isSourceMap">
+            function <span class="apidocSignatureSpan">less-middleware.utilities.</span>isSourceMap
+            <span class="apidocSignatureSpan">( pathname )</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.less-middleware.utilities.isValidPath">
+            function <span class="apidocSignatureSpan">less-middleware.utilities.</span>isValidPath
+            <span class="apidocSignatureSpan">(pathname)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.less-middleware.utilities.lessError">
+            function <span class="apidocSignatureSpan">less-middleware.utilities.</span>lessError
+            <span class="apidocSignatureSpan">(err)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.less-middleware.utilities.log">
+            function <span class="apidocSignatureSpan">less-middleware.utilities.</span>log
+            <span class="apidocSignatureSpan">(key, value, type)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.less-middleware.utilities.logDebug">
+            function <span class="apidocSignatureSpan">less-middleware.utilities.</span>logDebug
+            <span class="apidocSignatureSpan">(key, value, type)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.less-middleware.utilities.maybeCompressedSource">
+            function <span class="apidocSignatureSpan">less-middleware.utilities.</span>maybeCompressedSource
+            <span class="apidocSignatureSpan">(pathname)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.less-middleware" id="apidoc.module.less-middleware">module less-middleware</a></h1>
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.less-middleware.utilities" id="apidoc.module.less-middleware.utilities">module less-middleware.utilities</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.less-middleware.utilities.isCompressedPath" id="apidoc.element.less-middleware.utilities.isCompressedPath">
+        function <span class="apidocSignatureSpan">less-middleware.utilities.</span>isCompressedPath
+        <span class="apidocSignatureSpan">(pathname)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">isCompressedPath = function (pathname) {
+  return regex.compress.test(pathname);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.less-middleware.utilities.isSourceMap" id="apidoc.element.less-middleware.utilities.isSourceMap">
+        function <span class="apidocSignatureSpan">less-middleware.utilities.</span>isSourceMap
+        <span class="apidocSignatureSpan">( pathname )</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">isSourceMap = function ( pathname ){
+  return regex.sourceMap.test(pathname);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.less-middleware.utilities.isValidPath" id="apidoc.element.less-middleware.utilities.isValidPath">
+        function <span class="apidocSignatureSpan">less-middleware.utilities.</span>isValidPath
+        <span class="apidocSignatureSpan">(pathname)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">isValidPath = function (pathname) {
+  return regex.handle.test(pathname);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.less-middleware.utilities.lessError" id="apidoc.element.less-middleware.utilities.lessError">
+        function <span class="apidocSignatureSpan">less-middleware.utilities.</span>lessError
+        <span class="apidocSignatureSpan">(err)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">lessError = function (err) {
+  // An error while less is processing the file.
+  module.exports.log('LESS ' + err.type + ' error', err.message, 'error');
+  module.exports.log('LESS File', err.filename + ' ' + err.line + ':' + err.column, 'error');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.less-middleware.utilities.log" id="apidoc.element.less-middleware.utilities.log">
+        function <span class="apidocSignatureSpan">less-middleware.utilities.</span>log
+        <span class="apidocSignatureSpan">(key, value, type)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">log = function (key, value, type) {
+  // Only log for errors.
+  if(type !== 'error') {
+    return;
+  }
+
+  console[type]("  \u001b[90m%s :\u001b[0m \u001b[36m%s\u001b[0m", key, value);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  return regex.sourceMap.test(pathname);
+},
+isValidPath: function(pathname) {
+  return regex.handle.test(pathname);
+},
+lessError: function(err) {
+  // An error while less is processing the file.
+  module.exports.<span class="apidocCodeKeywordSpan">log</span>('LESS ' + err.type + ' error', err.message, &amp;#
+x27;error');
+  module.exports.log('LESS File', err.filename + ' ' + err.line + ':' + err.column, 'error'
+;);
+},
+log: function(key, value, type) {
+  // Only log for errors.
+  if(type !== 'error') {
+    return;
+  }
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.less-middleware.utilities.logDebug" id="apidoc.element.less-middleware.utilities.logDebug">
+        function <span class="apidocSignatureSpan">less-middleware.utilities.</span>logDebug
+        <span class="apidocSignatureSpan">(key, value, type)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">logDebug = function (key, value, type) {
+  switch(type) {
+    case 'log':
+    case 'info':
+    case 'error':
+    case 'warn':
+      break;
+    default:
+      type = 'log';
+  }
+
+  console[type]("  \u001b[90m%s :\u001b[0m \u001b[36m%s\u001b[0m", key, value);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.less-middleware.utilities.maybeCompressedSource" id="apidoc.element.less-middleware.utilities.maybeCompressedSource">
+        function <span class="apidocSignatureSpan">less-middleware.utilities.</span>maybeCompressedSource
+        <span class="apidocSignatureSpan">(pathname)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">maybeCompressedSource = function (pathname) {
+  return (regex.compress.test(pathname)
+      ? pathname.replace(regex.compress, '.less')
+      : pathname.replace('.css', '.less')
+    );
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
