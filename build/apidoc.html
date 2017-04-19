@@ -63,6 +63,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.less-middleware.less-middleware">
+            function <span class="apidocSignatureSpan"></span>less-middleware
+            <span class="apidocSignatureSpan">(source, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">less-middleware.</span>utilities</span>
 
         </li>
@@ -140,6 +149,146 @@
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.less-middleware" id="apidoc.module.less-middleware">module less-middleware</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.less-middleware.less-middleware" id="apidoc.element.less-middleware.less-middleware">
+        function <span class="apidocSignatureSpan"></span>less-middleware
+        <span class="apidocSignatureSpan">(source, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">less-middleware = function (source, options){
+  // Source dir is required.
+  if (!source) {
+    throw new Error(&#x27;less.middleware() requires `source` directory&#x27;);
+  }
+
+  // Override the defaults for the middleware.
+  options = extend(true, {
+    cacheFile: null,
+    debug: false,
+    dest: source,
+    force: false,
+    once: false,
+    pathRoot: null,
+    postprocess: {
+      css: function(css, req) { return css; },
+      sourcemap: function(sourcemap, req) { return sourcemap; }
+    },
+    preprocess: {
+      less: function(src, req) { return src; },
+      path: function(pathname, req) { return pathname; },
+      importPaths: function(paths, req) { return paths; }
+    },
+    render: {
+      compress: &#x27;auto&#x27;,
+      yuicompress: false,
+      paths: []
+    },
+    storeCss: function(pathname, css, req, next) {
+      mkdirp(path.dirname(pathname), 511 /* 0777 */, function(err){
+        if (err) return next(err);
+
+        fs.writeFile(pathname, css, &#x27;utf8&#x27;, next);
+      });
+    },
+    storeSourcemap: function(pathname, sourcemap, req) {
+      mkdirp(path.dirname(pathname), 511 /* 0777 */, function(err){
+        if (err) {
+          utilities.lessError(err);
+          return;
+        }
+
+        fs.writeFile(pathname, sourcemap, &#x27;utf8&#x27;);
+      });
+    }
+  }, options || {});
+
+  // The log function is determined by the debug option.
+  var log = (options.debug ? utilities.logDebug : utilities.log);
+
+  if (options.cacheFile &#x26;&#x26; !cacheFileInitialized) {
+    initCacheFile(options.cacheFile, log);
+  }
+
+  // Expose for testing.
+  less.middleware._saveCacheToFile = _saveCacheToFile;
+
+  // Actual middleware.
+  return function(req, res, next) {
+    if (&#x27;GET&#x27; != req.method.toUpperCase() &#x26;&#x26; &#x27;HEAD&#x27; != req.method.toUpperCase()) { return next(); }
+
+    var pathname = url.parse(req.url).pathname;
+
+    // Only handle the matching files in this middleware.
+    if (utilities.isValidPath(pathname)) {
+      var isSourceMap = utilities.isSourceMap(pathname);
+
+      // Translate source maps to a normal .css request which will update the associated source-map.
+      if( isSourceMap ){
+        pathname = pathname.replace( /\.map$/, &#x27;&#x27; );
+      }
+      var lessPath = path.join(source, utilities.maybeCompressedSource(pathname));
+      var cssPath = path.join(options.dest, pathname);
+
+      if (options.pathRoot) {
+        pathname = pathname.replace(options.dest, &#x27;&#x27;);
+        cssPath = path.join(options.pathRoot, options.dest, pathname);
+        lessPath = path.join(options.pathRoot, source, utilities.maybeCompressedSource(pathname));
+      }
+
+      var sourcemapPath = cssPath + &#x27;.map&#x27;;
+
+      // Allow for preprocessing the source filename.
+      lessPath = options.preprocess.path(lessPath, req);
+
+      log(&#x27;pathname&#x27;, pathname);
+      log(&#x27;source&#x27;, lessPath);
+      log(&#x27;destination&#x27;, cssPath);
+
+      // Ignore ENOENT to fall through as 404.
+      var error = function(err) {
+        return next(&#x27;ENOENT&#x27; == err.code ? null : err);
+      };
+
+      var compile = function() {
+        fs.readFile(lessPath, &#x27;utf8&#x27;, function(err, lessSrc){
+          if (err) {
+            return error(err);
+          }
+
+          delete lessFiles[lessPath];
+
+          try {
+            var renderOptions = extend(true, {}, options.render, {
+              filename: lessPath,
+              paths: options.preprocess.importPaths(options.render.paths, req)
+            });
+            lessSrc = options.preprocess.less(lessSrc, req);
+
+            less.render(lessSrc, renderOptions, function(err, output){
+              if (err) {
+                utilities.lessError(err);
+                return next(err);
+              }
+
+              // Determine the imports used and check modified times.
+              var imports = [];
+              output.imports.forEach(function(imported) {
+                var currentImport = {
+                    path: imported,
+                    mtime: null
+                };
+
+                imports.push(currentImport);
+
+                // Update the mtime of the import async.
+                fs.stat(imported, function(err, lessStats){
+                  if (err) { ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
 
